@@ -2,8 +2,17 @@
 <meta charset="utf-8">
 <style>
 
+#tooltip {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 100px; height: 60px;
+    background: white;
+    border: 0px;
+}
+
 body {
-  font: 10px sans-serif;
+  font: 13px sans-serif;
 }
 
 .axis path,
@@ -19,6 +28,7 @@ body {
 
 </style>
 <body>
+<div id="tooltip"></div>
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
@@ -65,7 +75,10 @@ function brushed() {
     focus.selectAll("path.focus").attr("d", function(d){return area(d.values)});
     focus.select(".x.axis").call(xAxis);
 }
-
+  var brush = d3.svg.brush()
+   .x(x2)
+  .on("brush", brushed);
+  var tooltip = d3.select("#tooltip");
 d3.csv("https://raw.githubusercontent.com/yan6pz/DataVisualization/master/PropertyPrices.csv", function(error, data) {
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "PeriodBegin"; }));
   data.forEach(function(d) {
@@ -92,14 +105,19 @@ d3.csv("https://raw.githubusercontent.com/yan6pz/DataVisualization/master/Proper
   x.domain(d3.extent(data, function(d) { return d.PeriodBegin; }));
   y.domain([0, maxDateVal]);
 
-  var brush = d3.svg.brush()
-   .x(x2)
-  .on("brush", brushed);
+
   
   var layer = svg.selectAll(".layer")
       .data(layers)
-    .enter().append("g")
-      .attr("class", "layer");
+		.enter().append("g")
+      .attr("class", "layer")
+	  .on("mouseover",function(d,i){
+			tooltip.style("opacity",1)
+			.style("left",(d3.event.pageX)+"px")
+			.style("top",(d3.event.pageY)+"px")
+			.html("The mean property price of "+d.name+" is $"+parseInt(d.values.map(function(a){ return a.y;}).reduce((a,b)=>a+b,0)/d.values.length));
+			})
+		.on("mouseout", function() { tooltip.style("opacity", 0) });
 
   layer.append("path")
       .attr("class", "area")
