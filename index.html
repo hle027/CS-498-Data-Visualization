@@ -14,7 +14,7 @@
 
 <div class="tab">
 	<button class="tablinks" onclick="openVisualization(event, 'Overview')">About the Visualization</button>
-	<button class="tablinks" onclick="openVisualization(event, 'AreaChart')">Property Prices Analysis</button>
+	<button class="tablinks" onclick="openVisualization(event, 'AreaChart')">Property Price Analysis</button>
 	<button class="tablinks" onclick="openVisualization(event, 'ParallelCoords')">Multidimentional Analysis</button>
 </div>
 
@@ -22,10 +22,10 @@
    <ul>
       <li>
          Does the narrative visualization correctly follow the hybrid structure as stated by the essay?
-         <p>The narrative visualization follows the Martini glass structure. Initially a stacked area chart is present by clicking on "Property Prices Analysis" where the y axis has the value of given property per city
-            and the x axis represents the years 2012-2018 during which the data was collected. On the other side, the "Multidimentional Analysis" shows some correlations between 8 dimentions of the data.
+         <p>The narrative visualization follows the Martini glass structure. Initially a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
+            and the x axis represents the years 2012-2018 during which the data was collected. On the other tab, the "Multidimentional Analysis" shows correlations between 8 dimentions of the data.
             Both visualizations have an element of the drill-down which is the tooltip displayed once hovering over given color(the area chart) or given line (the parallel coordinates chart).
-            However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements.	
+            However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).	
          </p>
       </li>
       <li>
@@ -35,17 +35,17 @@
             data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency. 
          </p>
          <p>The area chart has animation which is triggered on page load and is not controlled by the user. 
-            The colors are picked so that they clearly distinguish the different cities which effect is even emphasized by the animation. By hovering over a given color it drills-down for more
-            detailed information.
+            The colors are picked so that they clearly distinguish the different cities which effect is even emphasized by the animation. By hovering over a given color it drills down for more
+            detailed information using tooltips.
          </p>
-         <p>The parallel coordinates chart gives the ability to the user to select one or more lines and the visualization highlights them so that it is easier to track their correlation
-            and how different attributes influence the others. Moreover, once hovered given line becomes red and tooltip with the corresponding price is shown.
+         <p>The parallel coordinates visualization gives the ability to the user to select one or more lines and the logic highlights them so that it is easier to track their correlation
+            and how different attributes influence the one another. Moreover, once hovered given line becomes red and a tooltip with the corresponding price is shown.
          </p>
       </li>
       <li>
          Does the narrative visualization effectively utilize annotations?
          <p> On the first visualization for every stacked color there is a city name on the right-hand side that clearly displays which city corresponds to this particular color.
-			Looking at the multidimentional analysis all the eight dimentions are annotated showing their names.
+			Looking at the multidimentional analysis all the eight dimention axes are annotated showing their names.
 		 </p>
       </li>
       <li>
@@ -57,7 +57,7 @@
       <li>
          Does the narrative visualization effectively utilize triggers?
          <p>When the user selects line/s from the multidimentional graph this triggers an event which highlights only the selected lines. For both visualizations there is hover event bound
-			that triggers a tooltip. In the case of the parallel coordinates the hover even highlights the line making its color red.
+			that triggers a tooltip. In the case of the parallel coordinates the hover highlights the line making its color red. On page load event for the area chart an animation is triggered.
 		 </p>
       </li>
    </ul>
@@ -91,7 +91,7 @@ function openVisualization(evt, visName) {
 	if(visName==='AreaChart')
 		areaChart.display();
 	if(visName==='Overview')
-		tablinks[evt].className = tablinks[evt].className += " active";
+		tablinks[0].className = tablinks[0].className += " active";
 }
 openVisualization(0,'Overview');
 </script>
