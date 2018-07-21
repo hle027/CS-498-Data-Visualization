@@ -22,10 +22,11 @@
    <ul>
       <li>
          Does the narrative visualization correctly follow the hybrid structure as stated by the essay?
-         <p>The narrative visualization follows the Martini glass structure. Initially, a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
+         <p>The narrative visualization follows the Martini glass structure with vague note of interactive slide-show(the tabbed experience). Initially, a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
             and the x axis represents the years 2012-2018 during which the data was collected. On the other tab, the "Multidimentional Analysis" shows correlations between 8 dimentions of the data.
             Both visualizations have an element of the drill-down which is the tooltip displayed once hovering over given color(the area chart) or given line (the parallel coordinates chart).
-            However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).	
+            However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).
+			
          </p>
       </li>
       <li>
@@ -76,14 +77,21 @@
 
 <div id="AreaChart" class="tabcontent">
   <div id="tooltip"></div>
+	<p> The Property Price Analysis area chart displays an overview of how the prices are changing during the 2012-2018 period of time per every of the eight chosen cities. It is more than
+	clear that the prices are almost always constantly high in cities like San Francisco. Which can distinguish it as an outlier. On the other hand, one of the lowest property prices during the 
+	years are these for Chicago. There is a noticeable increase but overall the cost of real estate is lower in comparison with the other seven examples. 
+	</p>
 </div>
 
 <div id="ParallelCoords" class="tabcontent">
+	<p>The following visualization analysses the correlations between different data properties which are part of the dataset. Some of these properties show strong dependency on each other.
+	For instance, the real estate properties in San Francisco are usually with higher prices(>$1M) and the amount of time the property stays on the market is less in comparison to the other cities.
+	An interesting trend is that properties in cities with lower inventory and less new listings are sold quicker and usually above the listed price. 
+	</p>
 </div>
 
 <script>
 function openVisualization(evt, visName) {
-debugger;
     var i, tabcontent, tablinks;
 	d3.select("svg").remove();
     tabcontent = document.getElementsByClassName("tabcontent");
