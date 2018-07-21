@@ -61,13 +61,14 @@
          Does the narrative visualization effectively utilize triggers?
          <p>When the user selects line/s from the multidimentional graph this triggers an event which highlights only the selected lines. For both visualizations there is hover event bound
 			that triggers a tooltip. In the case of the parallel coordinates the hover highlights the line making its color red. On page load event for the area chart an animation is triggered.
-			Voronoi regions and hints were used to increase the affordance and make it easier for the user to understand how to interact with the graphs.
+			Voronoi regions and hints are used to increase the affordance and make it easier for the user to understand how to interact with the graphs.
 		 </p>
       </li>
 	   <li>
          Code organization.
-         <p> Both the parallel coordinates and area chart visualizations were written in D3.js. Each visualization lives in a separate .js file referenced in the index.html page and hosted in GitHub Pages.
-			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. 
+         <p> Both the parallel coordinates and area chart visualizations are written in D3.js. Each visualization lives in a separate .js file referenced in the index.html page and hosted in GitHub Pages.
+			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. A common .css file referenced in the index page is responsible for 
+			ensuring the visual consistency.
 		 </p>
       </li>
    </ul>
