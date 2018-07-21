@@ -22,7 +22,7 @@
    <ul>
       <li>
          Does the narrative visualization correctly follow the hybrid structure as stated by the essay?
-         <p>The narrative visualization follows the Martini glass structure. Initially a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
+         <p>The narrative visualization follows the Martini glass structure. Initially, a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
             and the x axis represents the years 2012-2018 during which the data was collected. On the other tab, the "Multidimentional Analysis" shows correlations between 8 dimentions of the data.
             Both visualizations have an element of the drill-down which is the tooltip displayed once hovering over given color(the area chart) or given line (the parallel coordinates chart).
             However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).	
@@ -32,7 +32,7 @@
          Does the narrative visualization effectively utilize scenes?
          <p>There are three scenes in total. The first is the overview/description, which may not count as a real scene although it is still part of the state machine playing the role of initial state-
             the state the user is initially landing on. The next two tabs- stacked area chart and parallel coordinates are the real scenes giving meaningful data and correlation regarding the 
-            data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency. 
+            data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency having white background color and same stylization. 
          </p>
          <p>The area chart has animation which is triggered on page load and is not controlled by the user. 
             The colors are picked so that they clearly distinguish the different cities which effect is even emphasized by the animation. By hovering over a given color it drills down for more
@@ -51,13 +51,23 @@
       <li>
          Does the narrative visualization effectively utilize parameters?
          <p> The transition between different scenes and visualization is done based on click on a partucular tab. If we consider the web page as state machine these tabs
-            are user driven parameters which change the states. 
+            are user driven parameters which change the states. For axample, a simple value of the tab parameter is the index of the tab. Once the index is provided the logic replaces
+			the tab with the one the user has chosen. Another parameter that is not controlled by the user directly but indirectly is the rendering of the area chart. Once the user changes
+			the tab the animation starts rendering each city's data within 1 second interval. Moreover, the mouse position is also used as parameter when it hovers a given chart's data. Based
+			on the mouse coordinates a particular data item is shown in a tooltip box.
          </p>
       </li>
       <li>
          Does the narrative visualization effectively utilize triggers?
          <p>When the user selects line/s from the multidimentional graph this triggers an event which highlights only the selected lines. For both visualizations there is hover event bound
 			that triggers a tooltip. In the case of the parallel coordinates the hover highlights the line making its color red. On page load event for the area chart an animation is triggered.
+			Voronoi regions and hints were used to increase the affordance and make it easier for the user to understand how to interact with the graphs.
+		 </p>
+      </li>
+	   <li>
+         Code organization.
+         <p> Both the parallel coordinates and area chart visualizations were written in D3.js. Each visualization lives in a separate .js file referenced in the index.html page and hosted in GitHub Pages.
+			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. 
 		 </p>
       </li>
    </ul>
@@ -72,6 +82,7 @@
 
 <script>
 function openVisualization(evt, visName) {
+debugger;
     var i, tabcontent, tablinks;
 	d3.select("svg").remove();
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -80,6 +91,7 @@ function openVisualization(evt, visName) {
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
 			tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(visName).style.display = "block";
@@ -91,7 +103,7 @@ function openVisualization(evt, visName) {
 	if(visName==='AreaChart')
 		areaChart.display();
 	if(visName==='Overview')
-		tablinks[0].className = tablinks[0].className += " active";
+		tablinks[0].className += " active";
 }
 openVisualization(0,'Overview');
 </script>
